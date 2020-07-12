@@ -1,0 +1,46 @@
+<section class="vertical-center" style="width:50%;">
+  <button type="button" (click)="addItem()" style="margin-right: 10px">Add Item</button>
+  <button type="button" (click)="removeItems()">Remove Items</button>
+  <button type="button" (click)="getReceipt()" style="float: right">Get Receipt</button>
+  <section name="shopping-cart" class="container-fluid" style="border:5px solid red; margin-top: 20px">
+    <ul>
+      <li class="row" style="margin-bottom: 20px; font-weight:500;">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-3">
+          Item Name
+        </div>
+        <div class="col-md-3">
+          Type
+        </div>
+        <div class="col-md-2">
+          Price
+        </div>
+        <div class="col-md-1">
+          Qty
+        </div>
+        <div class="col-md-2">
+          Imported
+        </div>
+      </li>
+      <li class="row" *ngFor="let item of items">
+        <button class="col-md-1" type="button" (click)="removeItem(item)" style="font-size: small">Remove</button>
+        <div class="col-md-3">
+          {{item.name}}
+        </div>
+        <div class="col-md-3">
+          {{item.itemType}}
+        </div>
+        <div class="col-md-2">
+          {{item.price | currency}}
+        </div>
+        <div class="col-md-1">
+          {{item.quantity}}
+        </div>
+        <div class="col-md-2">
+          <mat-checkbox [(ngModel)]="item.isImported" disabled></mat-checkbox>
+        </div>
+      </li>
+    </ul>
+  </section>
+</section>

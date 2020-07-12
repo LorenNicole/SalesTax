@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>NEW ITEM</h2>
+<p *ngIf="newItemInvalid" style="font-weight: 300">New Item is invalid, unable to add.</p>
+<div mat-dialog-content>
+  <mat-form-field style="width:100%">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.name" placeholder="Enter Name" required>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-content>
+  <mat-form-field style="width:30%">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" step="1" min="0" [(ngModel)]="data.price" required>
+  </mat-form-field>
+  <mat-form-field style="width:30%; float:right">
+    <mat-label>Quantity</mat-label>
+    <input matInput type="number" step="1" min="0" [(ngModel)]="data.quantity" required>
+  </mat-form-field>
+</div>
+
+<mat-form-field appearance="fill">
+  <mat-label>Item Type</mat-label>
+  <mat-select [(value)]="selectedItemType">
+    <mat-option *ngFor="let item of data.itemTypes" [value]="item.type">
+      {{item.type}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div mat-dialog-content>
+  <mat-checkbox [(ngModel)]="data.isImported">Imported</mat-checkbox>
+</div>
+
+<mat-dialog-actions align="end">
+  <button type="button" mat-raised-button (click)="closeDialog()" cdkFocusInitial>Save</button>
+  <button type="button" mat-raised-button (click)="closeDialog($event, { close: true })" [mat-dialog-close]="data" style="margin-left: 20px">Cancel</button>
+</mat-dialog-actions>
